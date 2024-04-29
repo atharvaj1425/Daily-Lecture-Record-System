@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Daily Lecture Record</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            margin-bottom: 10px ;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        {% if timetable %}
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #dddddd;
+        }
+
+        .dlr-button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .dlr-button:hover {
+            background-color: #0056b3;
+        }
+        {% endif %}
+    </style>  
+</head>
+<body>
+{% if messages %}
+    <!-- Include SweetAlert library -->
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        // Loop through each message and display SweetAlert accordingly
+        {% for message in messages %}
+            {% if message.tags %}
+                {% if 'form_error' in message.tags %}
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Form already submitted!",
+                    });
+                {% elif 'form_success' in message.tags %}
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Form submitted successfully!",
+                        icon: "success"
+                    });
+                {% elif 'form_update' in message.tags %}
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Form updated successfully!",
+                        icon: "success"
+                    });
+                {% elif 'form_noentry' in message.tags %}
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Form not entered!",
+                    });
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </script>
+{% endif %}
+
+    {% if timetable %}
+    <h1>ENTER DLR</h1>
+    <a href="dynamic_page"><button type="submit">Home Page</button></a>
+    <table>
+        <thead>
+            <tr>
+                <th>Section</th>
+                <th>Course Number</th>
+                <th>Course Name</th>
+                <th>Instructor ID</th>
+                <th>Time</th>
+                <th>Day</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in timetable %}
+            <tr>
+                <td>{{ record.section.name }}</td>
+                <td>{{ record.course_number }}</td>
+                <td>{{ record.course_name }}</td>
+                <td>{{ record.instructer_id}}</td>
+                <td>{{ record.time }}</td>
+                <td>{{ record.day }}</td>
+                <td><a href="{% url 'testdlrdetail' record.lr_id %}" class="dlr-button">Enter DLR</a> <a href="{% url 'updatedlrdetail' record.lr_id %}" class="dlr-button">Update DLR</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>

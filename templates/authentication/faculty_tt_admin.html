@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faculty Timetable</title>
+</head>
+<body>
+    
+    </div>
+    {% if lectures %}
+    <h2>Weekly Schedule  {{ lecture.instructer_name }}</h2>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-family: Arial, sans-serif; color: #333;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            font-family: Arial, sans-serif; color: #333;
+        }
+        th {
+            background-color: #007bff; color: #fff;
+            font-family: Arial, sans-serif; color: #333;
+        }
+    </style>
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>9:00 AM - 11:00 AM</td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Monday' and lecture.time == '9:00-11:00'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Tuesday' and lecture.time == '9:00-11:00'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Wednesday' and lecture.time == '9:00-11:00'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Thursday' and lecture.time == '9:00-11:00'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Friday' and lecture.time == '9:00-11:00'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                
+            </tr>
+            <tr>
+                <td>11:15 AM - 1:15 PM</td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Monday' and lecture.time == '11:15-01:15'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Tuesday' and lecture.time == '11:15-01:15'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Wednesday' and lecture.time == '11:15-01:15'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Thursday' and lecture.time == '11:15-01:15'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Friday' and lecture.time == '11:15-01:15'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                
+            </tr>
+            <tr>
+                <td>1:45 PM - 3:45 PM</td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Monday' and lecture.time == '1:45-3:45'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Tuesday' and lecture.time == '1:45-3:45'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Wednesday' and lecture.time == '1:45-3:45'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Thursday' and lecture.time == '1:45-3:45'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Friday' and lecture.time == '1:45-3:45'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                
+            </tr>
+            <tr>
+                <td>4:00 PM - 6:00 PM</td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Monday' and lecture.time == '4:00-6:00'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Tuesday' and lecture.time == '4:00-6:00'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Wednesday' and lecture.time == '4:00-6:00'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Thursday' and lecture.time == '4:00-6:00'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for lecture in lectures %}
+                        {% if lecture.day == 'Friday' and lecture.time == '4:00-6:00'%}
+                            {{ lecture.section.name }}<br>
+                            {{ lecture.course_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+    <script src-="" async defer></script>
+</body>
+</html>
