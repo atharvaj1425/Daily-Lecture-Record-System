@@ -47,4 +47,4 @@ For any inquiries or support related to the Daily Lecture Record System, please 
 Feel free to customize this readme according to your project's specific details and requirements.
 
 ## NOTE:
-Create two superusers since the first superuser you created won't have UniqueId.
+Create two superusers since the first superuser you created won't have UniqueId, so create the second user whom you want to give the all permissions with a UniqueId and add him to the Admin group.
