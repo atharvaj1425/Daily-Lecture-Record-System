@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignIn</title>
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div>
+        <div style="position: absolute; top: 0; right: 0; z-index: 1;">
+            <img src="https://vit.edu.in/images/vit_image_english.png" alt="English Image" style="max-width: 150px;">
+        </div>
+        <div style="position: absolute; top: 0; left: 0; z-index: 1;">
+            <img src="https://vit.edu.in/images/vit_image.png" alt="Marathi Image" style="max-width: 150px;">
+        </div>
+        <div style="background-image: url('https://images.shiksha.com/mediadata/images/1516603302phpz0SEMq.jpeg'); background-size: cover; background-position: center; height: 100vh;">
+            <div style="width: 100%; background-color: rgba(255, 255, 255, 0.8); padding: 20px; text-align: center; position: relative; z-index: 2;">
+                <h3 style="font-family: Arial, sans-serif; color: #333;">VIT Daily Lecture Record</h3>
+                <h4 style="font-family: Arial, sans-serif; color: #666;">Sign In!</h4>
+                <form action="/signin" method="post" style="font-family: Arial, sans-serif;">
+                    {% csrf_token %}
+                    <label for="username" style="color: #333; font-weight: bold;">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" style="padding: 5px; margin-bottom: 10px; width: 200px; border-radius: 5px; border: 1px solid #ccc;" Required>
+                    <br>
+                    <label for="pass1" style="color: #333; font-weight: bold;">Password</label>
+                    <input type="password" id="pass1" name="pass1" placeholder="Enter your password" style="padding: 5px; margin-bottom: 10px; width: 200px; border-radius: 5px; border: 1px solid #ccc;" Required>
+                    <br>
+                    <button style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Sign In</button>
+                    <br>
+                    <a href="/forgotpassword" style="color: #007bff; text-decoration: none;">Forgot Password?</a>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generate PDF</title>
+<!-- Include jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Include html2pdf -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 20px;
+    }
+    button {
+        display: inline-block; /* Change to inline-block */
+        margin: 20px auto; /* Center horizontally */
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.3s;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+        text-align: center;
+        color: #333333;
+        margin-bottom: 20px;
+    }
+    
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+        word-wrap: break-word; /* Add this line */
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    
+    tr:hover {
+        background-color: #dddddd;
+    }    
+    .dlr-button {
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.3s;
+    }
+
+    .dlr-button:hover {
+        background-color: #0056b3;
+    }
+    .red-cell {
+        background-color: red;
+    }
+</style>
+</head>
+<body>
+
+<h1>Lecture Record</h1>
+<div id="table-container">
+    {% if records %}
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Section</th>
+                <th>Instructor Name</th>
+                <th>Course Name</th>
+                <th>Time</th>
+                <th>Assignment Given</th>
+                <th>Assignment Collected</th>
+                <th>Assignment Distributed</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for record in records %}
+            <tr{% if record in records_with_other_user_ids %} class="red-row"{% endif %}>
+                <td>{{ record.date }}</td>
+                <td>{{ record.section }}</td>
+                <td>{{ record.instructer_name }}</td>
+                <td>{{ record.course_name }}</td>
+                <td>{{ record.time }}</td>
+                <td>{{ record.assignment_given }}</td>
+                <td>{{ record.assignment_collected }}</td>
+                <td>{{ record.assignment_distributed }}</td>
+                <td{% if record in records_with_other_user_ids %} class="red-cell"{% endif %}>
+                    {{ record.remarks }}
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+<button onclick="generatePDF()">Generate PDF</button>
+<a href="dynamic_page"><button>Home Page</button></a>
+<script>
+function generatePDF() {
+    const element = document.getElementById('table-container');
+    html2pdf()
+        .from(element)
+        .save();
+}
+</script>
+
+</body>
+</html>
