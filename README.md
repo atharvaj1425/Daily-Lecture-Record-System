@@ -45,5 +45,6 @@ The Daily Lecture Record System is a web-based application designed to streamlin
 For any inquiries or support related to the Daily Lecture Record System, please contact [jamdadeatharva14@gmail.com].
 
 Feel free to customize this readme according to your project's specific details and requirements.
+
 ##NOTE:
 Create two superusers since the first superuser you created won't have UniqueId.
