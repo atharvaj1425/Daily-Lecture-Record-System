@@ -46,5 +46,5 @@ For any inquiries or support related to the Daily Lecture Record System, please 
 
 Feel free to customize this readme according to your project's specific details and requirements.
 
-##NOTE:
+## NOTE:
 Create two superusers since the first superuser you created won't have UniqueId.
