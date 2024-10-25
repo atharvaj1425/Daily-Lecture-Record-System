@@ -74,13 +74,16 @@
     .dlr-button:hover {
         background-color: #0056b3;
     }
+    .red-cell {
+        background-color: red;
+    }
 </style>
 </head>
 <body>
 
 <h1>Lecture Record</h1>
 <div id="table-container">
-    {% if record %}
+    {% if records %}
     <table id="data-table">
         <thead>
             <tr>
@@ -96,25 +99,28 @@
             </tr>
         </thead>
         <tbody>
-            {% for r in record %}
-            <tr>
-                <td>{{ r.date }}</td>
-                <td>{{ r.section }}</td>
-                <td>{{ r.instructer_name }}</td>
-                <td>{{ r.course_name }}</td>
-                <td>{{ r.time }}</td>
-                <td>{{ r.assignment_given }}</td>
-                <td>{{ r.assignment_collected }}</td>
-                <td>{{ r.assignment_distributed }}</td>
-                <td>{{ r.remarks }}</td>
+        {% for record in records %}
+            <tr{% if record in records_with_other_user_ids %} class="red-row"{% endif %}>
+                <td>{{ record.date }}</td>
+                <td>{{ record.section }}</td>
+                <td>{{ record.instructer_name }}</td>
+                <td>{{ record.course_name }}</td>
+                <td>{{ record.time }}</td>
+                <td>{{ record.assignment_given }}</td>
+                <td>{{ record.assignment_collected }}</td>
+                <td>{{ record.assignment_distributed }}</td>
+                <td{% if record in records_with_other_user_ids %} class="red-cell"{% endif %}>
+                    {{ record.remarks }}
+                </td>
             </tr>
-            {% endfor %}
+        {% endfor %}
+
         </tbody>
     </table>
     {% endif %}
 </div>
 <button onclick="generatePDF()">Generate PDF</button>
-<a href="hod"><button>Home Page</button></a>
+<a href="dynamic_page"><button>Home Page</button></a>
 <script>
 function generatePDF() {
     const element = document.getElementById('table-container');

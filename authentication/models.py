@@ -3,7 +3,7 @@ from django.db import models
 from datetime import date
 
 class CustomUser(AbstractUser):
-    UniqueId = models.CharField(max_length=15, null=False)
+    UniqueId = models.CharField(primary_key=True, max_length=15, null=False,)
 
     def __str__(self):
         return self.username
@@ -21,7 +21,8 @@ class LectureRecord(models.Model):
     section = models.ForeignKey("Section", on_delete=models.CASCADE)
     course_number = models.CharField(max_length=50, null=False)
     course_name = models.CharField(max_length=50, null=False, default='TBD')
-    instructer_id = models.CharField(max_length=50, null=False)
+    # instructer_id = models.CharField(max_length=50, null=False)
+    instructer_id = models.ForeignKey("CustomUser", on_delete=models.CASCADE)
     instructer_name = models.CharField(max_length=100, null=False)
     time = models.CharField(max_length=100, null=False)
     day = models.CharField(max_length=100, null=False)

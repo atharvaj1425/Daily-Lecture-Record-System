@@ -17,7 +17,12 @@ admin.site.register(LectureRecord, LectureRecordAdmin)
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     fieldsets = UserAdmin.fieldsets + (
-       (None, {'fields': ('UniqueId',)}),
+        (None, {'fields': ('UniqueId',)}),
+    )
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (None, {
+            'fields': ('UniqueId',),
+        }),
     )
 
 admin.site.register(CustomUser, CustomUserAdmin)

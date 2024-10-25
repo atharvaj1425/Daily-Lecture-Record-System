@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from django.http import JsonResponse
 from django.urls import reverse
 from authentication.models import *
-from .models import FormData
+import re
 
 # Create your views here.
 def home(request):
@@ -75,12 +75,34 @@ def dlr_history(request):
     history = FormData.objects.filter(instructer_id=request.user.UniqueId)
     return render(request, "authentication/dlr_history.html", {'history': history})
 
+# def view_dlr(request):
+#     if request.method == 'POST':
+#         date = request.POST.get('date')
+#         section = request.POST.get('section')
+#     record = FormData.objects.filter(date=date, section=section)
+#     return render(request, "authentication/dlr_report.html", {'record': record})
+
 def view_dlr(request):
     if request.method == 'POST':
         date = request.POST.get('date')
         section = request.POST.get('section')
-    record = FormData.objects.filter(date=date, section=section)
-    return render(request, "authentication/dlr_report.html", {'record': record})
+        #records = get_object_or_404(FormData, date=date, section=section)
+        records = FormData.objects.filter(date=date, section=section)
+        
+        # Regular expression pattern to match user IDs
+        user_id_pattern = r'\bITF\d{1,10}\b'  # Matches "ITF" followed by 1 to 10 digits
+
+        # List to hold records with remarks containing user IDs of other users
+        records_with_other_user_ids = []
+
+        # Check remarks of each record
+        for record in records:
+            if re.search(user_id_pattern, record.remarks):
+                records_with_other_user_ids.append(record)
+        return render(request, "authentication/dlr_report.html", {'records': records, 'records_with_other_user_ids': records_with_other_user_ids})
+    else:
+        messages.error(request, 'Record not found!!', extra_tags='record_not_found')
+        redirect('dynamic_page')
 
 def faculty_tt(request):
     if request.method == 'POST':
