@@ -7,7 +7,7 @@ The Daily Lecture Record System is a web-based application designed to streamlin
 ### For Faculty:
 - **Record Evaluation Activities:** Faculty members can easily record various evaluation activities conducted during classes, such as assignments given, taken, and distributed.
 - **View DLR History:** Faculty members have access to their Daily Lecture Record (DLR) history, allowing them to review past activities and assessments.
-- 
+
 ### For Head of Department (HOD):
 - **Track Reports:** HODs can efficiently track reports submitted by faculty members based on dates and sections. This feature enables effective monitoring of teaching activities across different departments and sections.
 - **View Faculty Timetable:** HODs have the ability to view the timetable of individual faculty members by entering their unique ID. This feature assists in scheduling and coordination of faculty activities.
